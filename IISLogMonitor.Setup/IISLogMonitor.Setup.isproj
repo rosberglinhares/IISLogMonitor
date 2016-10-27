@@ -28,4 +28,10 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\PowershellScriptAsService\PowershellScriptAsService.csproj">
+			<Name>PowershellScriptAsService</Name>
+			<Project>{DFB36E7B-9934-4A48-956C-FFA9A45DEED9}</Project>
+		</ProjectReference>
+	</ItemGroup>
 </Project>
