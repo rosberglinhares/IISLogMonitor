@@ -26,8 +26,8 @@ namespace Samsung.PowershellScriptAsService
         private const int ERROR_EXCEPTION_IN_SERVICE = 1064;
         private const int EXIT_SUCCESS = 0;
 
-        private const int ARG_INDEX_SERVICE_NAME = 1;
-        private const int ARG_INDEX_POWERSHELL_SCRIPT_PATH = 2;
+        private const string ARG_LOG_NAME = "-LogName";
+        private const string ARG_POWERSHELL_SCRIPT_PATH = "-ScriptPath";
         
         private string powershellScriptPath;
         private EventLog eventLog;
@@ -36,11 +36,13 @@ namespace Samsung.PowershellScriptAsService
         {
             InitializeComponent();
 
-            this.GetServiceArgs();
+            string logName;
+
+            this.ParseServiceArgs(out logName, out this.powershellScriptPath);
 
             this.eventLog = new EventLog();
-            this.eventLog.Source = this.ServiceName;
-            this.eventLog.Log = this.ServiceName;
+            this.eventLog.Log = logName;
+            this.eventLog.Source = logName;
 
             if (!EventLog.SourceExists(this.eventLog.Source))
             {
@@ -48,12 +50,39 @@ namespace Samsung.PowershellScriptAsService
             }
         }
 
-        private void GetServiceArgs()
+        private void ParseServiceArgs(out string logName, out string powershellScriptPath)
         {
             string[] serviceImagePathArgs = Environment.GetCommandLineArgs();
+            logName = null;
+            powershellScriptPath = null;
 
-            this.ServiceName = serviceImagePathArgs[ARG_INDEX_SERVICE_NAME];
-            this.powershellScriptPath = serviceImagePathArgs[ARG_INDEX_POWERSHELL_SCRIPT_PATH];
+            // Step two by two items. One item is the argument name and the another one is the argument value
+            for (int i = 1; i <= serviceImagePathArgs.Length - 2; i += 2)
+            {
+                switch (serviceImagePathArgs[i])
+                {
+                    case ARG_LOG_NAME:
+                        logName = serviceImagePathArgs[i + 1];
+                        break;
+
+                    case ARG_POWERSHELL_SCRIPT_PATH:
+                        powershellScriptPath = serviceImagePathArgs[i + 1];
+                        break;
+
+                    default:
+                        throw new Exception("Unknown argument: " + serviceImagePathArgs[i]);
+                }
+            }
+
+            if (logName == null)
+            {
+                throw new Exception(string.Format("The argument '{0}' must be informed", ARG_LOG_NAME));
+            }
+
+            if (powershellScriptPath == null)
+            {
+                throw new Exception(string.Format("The argument '{0}' must be informed", ARG_POWERSHELL_SCRIPT_PATH));
+            }
         }
 
         protected override void OnStart(string[] args)
