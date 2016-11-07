@@ -4481,7 +4481,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">Arguments</col>
 		<col def="s72">Component_</col>
 		<col def="L255">Description</col>
-		<row><td>NewServiceInstall1</td><td>IISLogMonitor</td><td>##ID_STRING3##</td><td>16</td><td>3</td><td>32769</td><td/><td/><td/><td/><td>-LogName "IIS Log Monitor" -ScriptPath "[INSTALLDIR]IISLogMonitor.ps1"</td><td>PowershellScriptAsService.Primary_output</td><td/></row>
+		<row><td>NewServiceInstall1</td><td>IISLogMonitor</td><td>##ID_STRING3##</td><td>16</td><td>3</td><td>32769</td><td/><td/><td>NT AUTHORITY\LocalService</td><td/><td>-LogName "IIS Log Monitor" -ScriptPath "[INSTALLDIR]IISLogMonitor.ps1"</td><td>PowershellScriptAsService.Primary_output</td><td/></row>
 	</table>
 
 	<table name="Shortcut">
