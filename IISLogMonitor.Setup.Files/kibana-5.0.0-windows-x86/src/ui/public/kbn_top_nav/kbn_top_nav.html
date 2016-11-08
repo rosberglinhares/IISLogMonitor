@@ -1,0 +1,27 @@
+<navbar ng-show="kbnTopNav.isVisible()" class="kibana-nav-options" data-test-subj="top-nav">
+  <div ng-transclude></div>
+  <div class="button-group kibana-nav-actions" role="toolbar">
+    <button
+      ng-repeat="menuItem in kbnTopNav.menuItems"
+      aria-label="{{::menuItem.description}}"
+      aria-haspopup="{{!menuItem.hasFunction}}"
+      aria-expanded="{{kbnTopNav.isCurrent(menuItem.key)}}"
+      ng-class="{active: kbnTopNav.isCurrent(menuItem.key), 'is-kbn-top-nav-button-disabled': menuItem.disableButton()}"
+      ng-click="kbnTopNav.handleClick(menuItem)"
+      ng-bind="menuItem.label"
+      tooltip="{{menuItem.tooltip()}}"
+      tooltip-placement="bottom"
+      tooltip-popup-delay="400"
+      tooltip-append-to-body="1"
+      data-test-subj="menu-item-{{menuItem.key}}"
+    >
+    </button>
+  </div>
+  <kbn-global-timepicker></kbn-global-timepicker>
+</navbar>
+<div class="config" ng-show="kbnTopNav.rendered">
+  <div id="template_wrapper" class="container-fluid"></div>
+  <div class="config-close remove" ng-click="kbnTopNav.close()">
+    <i class="fa fa-chevron-circle-up"></i>
+  </div>
+</div>

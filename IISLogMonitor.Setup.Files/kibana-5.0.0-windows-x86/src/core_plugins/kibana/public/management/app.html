@@ -1,0 +1,26 @@
+<div class="app-container">
+  <bread-crumbs class="bread-crumbs--navbar" omit-current-page="true"></bread-crumbs>
+  <kbn-top-nav name="management-subnav" data-test-subj="managementNav">
+    <div class="localTabs">
+      <span ng-if="!sectionName" class="localTab">
+        {{::section.display}}
+      </span>
+
+      <a
+        ng-if="sectionName"
+        ng-repeat="item in section.items.inOrder"
+        class="localTab"
+        ng-class="{ 'localTab-isSelected': item.active, 'localTab-disabled': !item.url }"
+        kbn-href="{{::item.url}}"
+        data-test-subj="{{::item.name}}"
+        tooltip="{{::item.tooltip}}"
+        tooltip-placement="bottom"
+        tooltip-popup-delay="400"
+        tooltip-append-to-body="1"
+      >
+        {{::item.display}}
+      </a>
+    </div>
+  </kbn-top-nav>
+  <div role="main" class="management-container" ng-transclude></div>
+</div>

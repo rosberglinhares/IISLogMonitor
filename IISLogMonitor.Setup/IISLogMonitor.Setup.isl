@@ -339,8 +339,8 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>IISLogMonitor.Setup.Files.Content_Files</td><td>{FE295E82-C560-4F14-B60C-FAC009265432}</td><td>INSTALLDIR</td><td>258</td><td/><td>iislogmonitor.setup.files.co</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{B50F672B-14BB-470F-81F0-AE893B8305FD}</td><td>ProgramFiles64Folder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>PowershellScriptAsService.Content_Files</td><td>{71A5C99A-A52A-4C36-BBDB-316D9E46A013}</td><td>INSTALLDIR</td><td>258</td><td/><td>powershellscriptasservice.co</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>PowershellScriptAsService.Primary_output</td><td>{3FCD9D88-A7A0-42CF-9EEE-7151124F037F}</td><td>INSTALLDIR</td><td>258</td><td/><td>powershellscriptasservice.pr</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1050,8 +1050,8 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>INSTALLDIR</td><td>IISLogMonitor.Setup.Files.Content_Files</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
-		<row><td>INSTALLDIR</td><td>PowershellScriptAsService.Content_Files</td></row>
 		<row><td>INSTALLDIR</td><td>PowershellScriptAsService.Primary_output</td></row>
 		<row><td>ProgramFiles64Folder</td><td>ISX_DEFAULTCOMPONENT</td></row>
 	</table>
@@ -1867,8 +1867,8 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AlwaysInstall</td><td>IISLogMonitor.Setup.Files.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
-		<row><td>AlwaysInstall</td><td>PowershellScriptAsService.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>PowershellScriptAsService.Primary_output</td></row>
 	</table>
 
@@ -1884,7 +1884,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>powershellscriptasservice.co</td><td>PowershellScriptAsService.Content_Files</td><td>PowershellScriptAsService.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PowershellScriptAsService&gt;|ContentFiles</td><td>3</td><td/></row>
+		<row><td>iislogmonitor.setup.files.co</td><td>IISLogMonitor.Setup.Files.Content_Files</td><td>IISLogMonitor.Setup.Files.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;IISLogMonitor.Setup.Files&gt;|ContentFiles</td><td>3</td><td/></row>
 		<row><td>powershellscriptasservice.pr</td><td>PowershellScriptAsService.Primary_output</td><td>PowershellScriptAsService.Primary output</td><td>0</td><td/><td/><td>0</td><td>1</td><td>&lt;PowershellScriptAsService&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2027,8 +2027,8 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>IISLogMonitor.Setup.Files.Content_Files</td><td/><td/><td>_FE7C9027_4612_46E6_B2AC_B06C532D2E79_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_A15903AC_4FAC_4775_AE70_B922D3C2E9C3_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>PowershellScriptAsService.Content_Files</td><td/><td/><td>_8A4BB3DB_D3A4_4B15_A6D5_F204BD65D6FD_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>PowershellScriptAsService.Primary_output</td><td/><td/><td>_734B1AA3_76C0_4D54_A74B_1CB783148E2E_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2308,6 +2308,7 @@
 		<col def="S255">TestValue</col>
 		<col def="i4">Type</col>
 		<row><td>CommonFilesFolder</td><td/><td/><td>1</td></row>
+		<row><td>IISLogMonitor.Setup.Files</td><td>IISLogMonitor.Setup.Files\IISLogMonitor.Setup.Files.csproj</td><td/><td>2</td></row>
 		<row><td>ISPROJECTDIR</td><td/><td/><td>1</td></row>
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
