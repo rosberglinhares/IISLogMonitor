@@ -2337,6 +2337,7 @@
 		<col key="yes" def="s72">ISProductConfiguration_</col>
 		<col key="yes" def="s72">Property</col>
 		<col def="L255">Value</col>
+		<row><td>Express</td><td>SetupFileName</td><td>IISLogMonitorSetup</td></row>
 	</table>
 
 	<table name="ISRelease">
@@ -3722,6 +3723,7 @@
 		<row><td>ID_STRING1</td><td>1033</td><td>http://www2.cin.ufpe.br/</td><td>0</td><td/><td>-584836146</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>Samsung - CIn-UFPE</td><td>0</td><td/><td>-584826098</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>IIS Log Monitor</td><td>0</td><td/><td>1034181648</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>A tool for monitoring IIS logs encapsulating the Elasticsearch, Logstash, Filebeat and Kibana tools.</td><td>0</td><td/><td>-1918624373</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-584793811</td></row>
 	</table>
 
@@ -3835,7 +3837,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Resources\Images\stats.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -3968,7 +3970,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{5E281A87-B985-44F2-9E84-1EFC89EFDEB2}</td></row>
 		<row><td>ISUSSignature</td><td>{8E5CDA59-9092-4EFB-9535-0393025ECA0D}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewISToday,viewLearnMore,viewAppFiles,viewServices</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewISToday,viewLearnMore,viewAppFiles,viewServices,viewProject,viewSystemSearch,viewRelease</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4482,7 +4484,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">Arguments</col>
 		<col def="s72">Component_</col>
 		<col def="L255">Description</col>
-		<row><td>NewServiceInstall1</td><td>IISLogMonitor</td><td>##ID_STRING3##</td><td>16</td><td>3</td><td>32769</td><td/><td/><td>NT AUTHORITY\LocalService</td><td/><td>-LogName "IIS Log Monitor" -ScriptPath "[INSTALLDIR]IISLogMonitor.ps1"</td><td>PowershellScriptAsService.Primary_output</td><td/></row>
+		<row><td>NewServiceInstall1</td><td>IISLogMonitor</td><td>##ID_STRING3##</td><td>16</td><td>3</td><td>32769</td><td/><td/><td>NT AUTHORITY\LocalService</td><td/><td>-LogName "IIS Log Monitor" -ScriptPath "[INSTALLDIR]IISLogMonitor.ps1"</td><td>PowershellScriptAsService.Primary_output</td><td>##ID_STRING4##</td></row>
 	</table>
 
 	<table name="Shortcut">
