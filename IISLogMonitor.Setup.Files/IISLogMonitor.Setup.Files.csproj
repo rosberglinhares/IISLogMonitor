@@ -41,7 +41,7 @@
     <Content Include="logstash-5.0.0\**\*.*" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IISLogMonitor.ps1" />
+    <Content Include="IISLogMonitorService.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -341,6 +341,7 @@
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>IISLogMonitor.Setup.Files.Content_Files</td><td>{FE295E82-C560-4F14-B60C-FAC009265432}</td><td>INSTALLDIR</td><td>258</td><td/><td>iislogmonitor.setup.files.co</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{B50F672B-14BB-470F-81F0-AE893B8305FD}</td><td>ProgramFiles64Folder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{96B7471D-F52A-478A-8028-4FF699E254E9}</td><td>LOGS</td><td>258</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>PowershellScriptAsService.Primary_output</td><td>{3FCD9D88-A7A0-42CF-9EEE-7151124F037F}</td><td>INSTALLDIR</td><td>258</td><td/><td>powershellscriptasservice.pr</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1052,7 +1053,9 @@
 		<col key="yes" def="s72">Component_</col>
 		<row><td>INSTALLDIR</td><td>IISLogMonitor.Setup.Files.Content_Files</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>PowershellScriptAsService.Primary_output</td></row>
+		<row><td>LOGS</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>ProgramFiles64Folder</td><td>ISX_DEFAULTCOMPONENT</td></row>
 	</table>
 
@@ -1151,6 +1154,7 @@
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
+		<row><td>LOGS</td><td>INSTALLDIR</td><td>Logs</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
 		<row><td>MY_PRODUCT_NAME</td><td>SAMSUNGCINUFPE</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
@@ -1869,6 +1873,7 @@
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>IISLogMonitor.Setup.Files.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>PowershellScriptAsService.Primary_output</td></row>
 	</table>
 
@@ -2029,6 +2034,7 @@
 		<col def="S0">Miscellaneous</col>
 		<row><td>IISLogMonitor.Setup.Files.Content_Files</td><td/><td/><td>_FE7C9027_4612_46E6_B2AC_B06C532D2E79_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_A15903AC_4FAC_4775_AE70_B922D3C2E9C3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_D4CF3968_E638_448B_BCBF_58F483ADFEFE_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>PowershellScriptAsService.Primary_output</td><td/><td/><td>_734B1AA3_76C0_4D54_A74B_1CB783148E2E_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -4484,7 +4490,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">Arguments</col>
 		<col def="s72">Component_</col>
 		<col def="L255">Description</col>
-		<row><td>NewServiceInstall1</td><td>IISLogMonitor</td><td>##ID_STRING3##</td><td>16</td><td>2</td><td>32769</td><td/><td/><td>NT AUTHORITY\LocalService</td><td/><td>-LogName "IIS Log Monitor" -ScriptPath "[INSTALLDIR]IISLogMonitor.ps1"</td><td>PowershellScriptAsService.Primary_output</td><td>##ID_STRING4##</td></row>
+		<row><td>NewServiceInstall1</td><td>IISLogMonitor</td><td>##ID_STRING3##</td><td>16</td><td>2</td><td>32769</td><td/><td/><td>LocalSystem</td><td/><td>-LogName "IIS Log Monitor" -ScriptPath "[INSTALLDIR]IISLogMonitorService.ps1"</td><td>PowershellScriptAsService.Primary_output</td><td>##ID_STRING4##</td></row>
 	</table>
 
 	<table name="Shortcut">
