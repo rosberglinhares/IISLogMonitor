@@ -1,0 +1,4 @@
+IISLogMonitor.Setup.Files/elasticsearch-5.0.0/*           linguist-vendored
+IISLogMonitor.Setup.Files/filebeat-5.0.0-windows-x86_64/* linguist-vendored
+IISLogMonitor.Setup.Files/kibana-5.0.0-windows-x86/*      linguist-vendored
+IISLogMonitor.Setup.Files/logstash-5.0.0/*                linguist-vendored
