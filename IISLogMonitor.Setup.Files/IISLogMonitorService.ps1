@@ -43,12 +43,14 @@ Set-Variable LogsPath -Option Constant -Value (Join-Path $PSScriptRoot "Logs")
 Set-Variable ElasticSearchExecutableName -Option Constant -Value "elasticsearch.bat"
 Set-Variable ElasticSearchExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "elasticsearch-5.0.0\bin" | Join-Path -ChildPath $ElasticSearchExecutableName)
 Set-Variable ElasticSearchLogPath -Option Constant -Value (Join-Path $LogsPath "ElasticSearchOut.txt")
+Set-Variable ElasticSearchStartedFilter -Option Constant -Value "*started"
 
 Set-Variable LogStashRootPath -Option Constant -Value (Join-Path $PSScriptRoot "logstash-5.0.0")
 Set-Variable LogStashExecutableName -Option Constant -Value "logstash.bat"
 Set-Variable LogStashExecutableRelativePath -Option Constant -Value ".\bin\$LogStashExecutableName"
 Set-Variable LogStashConfigFileRelativePath -Option Constant -Value ".\config\logstash.conf"
 Set-Variable LogStashLogPath -Option Constant -Value (Join-Path $LogsPath "LogStashOut.txt")
+Set-Variable LogStashStartedFilter -Option Constant -Value "*Successfully started*"
 
 Set-Variable FileBeatRootPath -Option Constant -Value (Join-Path $PSScriptRoot "filebeat-5.0.0-windows-x86_64")
 Set-Variable FileBeatExecutableName -Option Constant -Value "filebeat.exe"
@@ -57,11 +59,45 @@ Set-Variable FileBeatLogPath -Option Constant -Value (Join-Path $LogsPath "FileB
 Set-Variable KibanaExecutableName -Option Constant -Value "kibana.bat"
 Set-Variable KibanaExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "kibana-5.0.0-windows-x86\bin" | Join-Path -ChildPath $KibanaExecutableName)
 Set-Variable KibanaLogPath -Option Constant -Value (Join-Path $LogsPath "KibanaOut.txt")
+Set-Variable KibanaStartedFilter -Option Constant -Value "*Server running at*"
 
-Set-Variable StopProcessTimeoutMilliseconds -Option Constant -Value 5000
+Set-Variable WaitForProcessStartEventId -Option Constant -Value "WaitForProcessStart"
+Set-Variable StartProcessTimeoutInSeconds -Option Constant -Value 30
+Set-Variable StopProcessTimeoutInSeconds -Option Constant -Value 5
 
 function OnStart()
 {
+    function Wait-ProcessStart([string] $ExecutableName, [string] $ProcessOutputFilePath, [string] $StartedOutputFiler)
+    {
+        $getFileContentJob = Start-Job -ArgumentList $ProcessOutputFilePath, $StartedOutputFiler -ScriptBlock {
+            param (
+                [string] $ProcessOutputFilePath,
+                [string] $StartedOutputFiler
+            )
+
+            Get-Content $ProcessOutputFilePath -Wait | where { $_ -like $StartedOutputFiler }
+        }
+        
+        $getFileContentChildJob = $getFileContentJob.ChildJobs[0]
+
+        Register-ObjectEvent $getFileContentChildJob.Output -EventName "DataAdding" -SourceIdentifier $WaitForProcessStartEventId
+
+        try
+        {
+            $eventArgs = Wait-Event -SourceIdentifier $WaitForProcessStartEventId -Timeout $StartProcessTimeoutInSeconds
+
+            if ($eventArgs -eq $null)
+            {
+                throw "Unable to start '$ExecutableName': the process start timed out ($StartProcessTimeoutInSeconds seconds)"
+            }
+        }
+        finally
+        {
+            Unregister-Event -SourceIdentifier $WaitForProcessStartEventId
+            Remove-Event -SourceIdentifier $WaitForProcessStartEventId
+        }
+    }
+
     <#
         1. If RedirectStandardInput is used, the PowershellScriptAsService.exe will freeze in the Process#StandardError.ReadToEnd() method.
 
@@ -69,14 +105,17 @@ function OnStart()
     #>
 
     Start-Process $ElasticSearchExecutablePath "> `"$ElasticSearchLogPath`" < nul"
+    Wait-ProcessStart $ElasticSearchExecutableName $ElasticSearchLogPath $ElasticSearchStartedFilter
 
     Set-Location $LogStashRootPath
     Start-Process $LogStashExecutableRelativePath "-f `"$LogStashConfigFileRelativePath`" > `"$LogStashLogPath`" < nul"
+    Wait-ProcessStart $LogStashExecutableName $LogStashLogPath $LogStashStartedFilter
+
+    Start-Process $KibanaExecutablePath "> `"$KibanaLogPath`" < nul"
+    Wait-ProcessStart $KibanaExecutableName $KibanaLogPath $KibanaStartedFilter
 
     Set-Location $FileBeatRootPath
     Start-Process $FileBeatExecutableName "> `"$FileBeatLogPath`""
-
-    Start-Process $KibanaExecutablePath "> `"$KibanaLogPath`" < nul"
 }
 
 function OnStop()
@@ -120,14 +159,14 @@ function OnStop()
             Throw-WinApiError("GenerateConsoleCtrlEvent")
         }
 
-        if (-not $process.WaitForExit($StopProcessTimeoutMilliseconds))
+        if (-not $process.WaitForExit($StopProcessTimeoutInSeconds * 1000))
         {
             throw "Could not stop the process { Id = $($process.Id), CommandLine = '$($cimProcess.CommandLine)' }"
         }
     }
 
-    Stop-ProcessByCtrlC($KibanaExecutableName)
     Stop-ProcessByCtrlC($FileBeatExecutableName)
+    Stop-ProcessByCtrlC($KibanaExecutableName)
     Stop-ProcessByCtrlC($LogStashExecutableName)
     Stop-ProcessByCtrlC($ElasticSearchExecutableName)
 }
