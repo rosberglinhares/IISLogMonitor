@@ -262,6 +262,7 @@
 		<row><td>NewBinary16</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallFirstUse.ico</td></row>
 		<row><td>NewBinary17</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallPartial.ico</td></row>
 		<row><td>NewBinary18</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallStateMenu.ico</td></row>
+		<row><td>NewBinary19</td><td/><td>&lt;ISPROJECTDIR&gt;..\CheckPowerShellVersion.js</td></row>
 		<row><td>NewBinary2</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\New.ibd</td></row>
 		<row><td>NewBinary3</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\Up.ibd</td></row>
 		<row><td>NewBinary4</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\WarningIcon.ibd</td></row>
@@ -1066,6 +1067,7 @@
 		<col def="S0">Target</col>
 		<col def="I4">ExtendedType</col>
 		<col def="S255">ISComments</col>
+		<row><td>CheckPowerShellVersion</td><td>5</td><td>NewBinary19</td><td/><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
 		<row><td>ISRunSetupTypeAddLocalEvent</td><td>1</td><td>ISExpHlp.dll</td><td>RunSetupTypeAddLocalEvent</td><td/><td>Run the AddLocal events associated with the Next button on the Setup Type dialog.</td></row>
@@ -3402,6 +3404,7 @@
 		<row><td>IDS_ISSCRIPT_VERSION_OLD</td><td>1033</td><td>The InstallScript engine on this machine is older than the version required to run this setup.  If available, please install the latest version of ISScript.msi, or contact your support personnel for further assistance.</td><td>0</td><td/><td>-584793811</td></row>
 		<row><td>IDS_NEXT</td><td>1033</td><td>&amp;Next &gt;</td><td>0</td><td/><td>-584793811</td></row>
 		<row><td>IDS_OK</td><td>1033</td><td>OK</td><td>0</td><td/><td>-584793811</td></row>
+		<row><td>IDS_POWERSHELL_REQUIRED</td><td>1033</td><td>IIS Log Monitor requires PowerShell 5.0 or later. Install WMF 5.0 or later and try again.</td><td>0</td><td/><td>681956145</td></row>
 		<row><td>IDS_PREREQUISITE_SETUP_BROWSE</td><td>1033</td><td>Open [ProductName]'s original [SETUPEXENAME]</td><td>0</td><td/><td>-584793811</td></row>
 		<row><td>IDS_PREREQUISITE_SETUP_INVALID</td><td>1033</td><td>This executable file does not appear to be the original executable file for [ProductName]. Without using the original [SETUPEXENAME] to install additional dependencies, [ProductName] may not work correctly. Would you like to find the original [SETUPEXENAME]?</td><td>0</td><td/><td>-584793811</td></row>
 		<row><td>IDS_PREREQUISITE_SETUP_SEARCH</td><td>1033</td><td>This installation may require additional dependencies. Without its dependencies, [ProductName] may not work correctly. Would you like to find the original [SETUPEXENAME]?</td><td>0</td><td/><td>-584793811</td></row>
@@ -4000,6 +4003,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="I4">ISAttributes</col>
 		<row><td>AppSearch</td><td/><td>400</td><td>AppSearch</td><td/></row>
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
+		<row><td>CheckPowerShellVersion</td><td>Not Installed</td><td>200</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
 		<row><td>ExecuteAction</td><td/><td>1300</td><td>ExecuteAction</td><td/></row>
@@ -4035,6 +4039,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
 		<row><td>(Not Version9X) And (Not (VersionNT&gt;=400 And VersionNT&lt;=600))</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_OS##</td></row>
+		<row><td>IS_POWERSHELL_VERSION_OK</td><td>##IDS_POWERSHELL_REQUIRED##</td></row>
 	</table>
 
 	<table name="ListBox">

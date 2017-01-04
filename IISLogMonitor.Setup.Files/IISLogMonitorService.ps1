@@ -1,3 +1,5 @@
+#Requires -Version 5
+
 [CmdletBinding()]
 param
 (
@@ -75,6 +77,8 @@ function OnStart()
                 [string] $StartedOutputFiler
             )
 
+            # 1. The Get-Content will only work in PowerShell version 5 or later (see http://stackoverflow.com/questions/19919180/get-content-wait-not-working-as-described-in-the-documentation).
+            # 2. Each line in the file will be filtered by the Where-Object cmdlet and if it satisfy the condition, it will be sent to the pipeline, releasing the Wait-Event cmdlet called later
             Get-Content $ProcessOutputFilePath -Wait | where { $_ -like $StartedOutputFiler }
         }
         
@@ -94,7 +98,9 @@ function OnStart()
         finally
         {
             Unregister-Event -SourceIdentifier $WaitForProcessStartEventId
-            Remove-Event -SourceIdentifier $WaitForProcessStartEventId
+
+            # If the event timed-out, Remove-Event will not be necessary and will throw an error
+            Remove-Event -SourceIdentifier $WaitForProcessStartEventId -ErrorAction SilentlyContinue
         }
     }
 
