@@ -343,6 +343,7 @@
 		<row><td>IISLogMonitor.Setup.Files.Content_Files</td><td>{FE295E82-C560-4F14-B60C-FAC009265432}</td><td>INSTALLDIR</td><td>258</td><td/><td>iislogmonitor.setup.files.co</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{B50F672B-14BB-470F-81F0-AE893B8305FD}</td><td>ProgramFiles64Folder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{96B7471D-F52A-478A-8028-4FF699E254E9}</td><td>LOGS</td><td>258</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{B37367BC-462D-42F7-8C0B-AB932A62D18A}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>PowershellScriptAsService.Primary_output</td><td>{3FCD9D88-A7A0-42CF-9EEE-7151124F037F}</td><td>INSTALLDIR</td><td>258</td><td/><td>powershellscriptasservice.pr</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1055,6 +1056,7 @@
 		<row><td>INSTALLDIR</td><td>IISLogMonitor.Setup.Files.Content_Files</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>INSTALLDIR</td><td>PowershellScriptAsService.Primary_output</td></row>
 		<row><td>LOGS</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>ProgramFiles64Folder</td><td>ISX_DEFAULTCOMPONENT</td></row>
@@ -1182,6 +1184,7 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
+		<row><td>newfolder1</td><td>ProgramMenuFolder</td><td>##ID_STRING5##</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -1876,6 +1879,7 @@
 		<row><td>AlwaysInstall</td><td>IISLogMonitor.Setup.Files.Content_Files</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
 		<row><td>AlwaysInstall</td><td>PowershellScriptAsService.Primary_output</td></row>
 	</table>
 
@@ -2037,6 +2041,7 @@
 		<row><td>IISLogMonitor.Setup.Files.Content_Files</td><td/><td/><td>_FE7C9027_4612_46E6_B2AC_B06C532D2E79_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_A15903AC_4FAC_4775_AE70_B922D3C2E9C3_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_D4CF3968_E638_448B_BCBF_58F483ADFEFE_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_149C030A_92AC_4F4E_9B0E_381E52C28A4E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>PowershellScriptAsService.Primary_output</td><td/><td/><td>_734B1AA3_76C0_4D54_A74B_1CB783148E2E_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -3733,6 +3738,9 @@
 		<row><td>ID_STRING2</td><td>1033</td><td>Samsung - CIn-UFPE</td><td>0</td><td/><td>-584826098</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>IIS Log Monitor</td><td>0</td><td/><td>1034181648</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>A tool for monitoring IIS logs encapsulating the Elasticsearch, Logstash, Filebeat and Kibana tools.</td><td>0</td><td/><td>-1918624373</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>IISLOG~1|IIS Log Monitor</td><td>0</td><td/><td>816143887</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>IISLOG~1|IIS Log Monitor</td><td>0</td><td/><td>816177552</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>Uninstall</td><td>0</td><td/><td>816120240</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-584793811</td></row>
 	</table>
 
@@ -3847,6 +3855,8 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Resources\Images\stats.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_47D1433855264129B24A7D63AE5CE5CC.exe</td><td/><td>&lt;VSSolutionFolder&gt;\Resources\Images\stats.ico</td><td>0</td></row>
+		<row><td>NewShortcut2_D1CC37B0448140518CB7CBA13495A25F.exe</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4431,6 +4441,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>NewShortcut1</td><td>ISX_DEFAULTCOMPONENT2</td><td/><td>newfolder1</td><td>2</td></row>
+		<row><td>NewShortcut2</td><td>ISX_DEFAULTCOMPONENT2</td><td/><td>newfolder1</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4518,6 +4530,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>NewShortcut1</td><td>newfolder1</td><td>##ID_STRING6##</td><td>ISX_DEFAULTCOMPONENT2</td><td>[SystemFolder]cmd.exe</td><td>/c start http://localhost:5601</td><td/><td/><td>NewShortcut1_47D1433855264129B24A7D63AE5CE5CC.exe</td><td>0</td><td>7</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut2</td><td>newfolder1</td><td>##ID_STRING7##</td><td>ISX_DEFAULTCOMPONENT2</td><td>[SystemFolder]MsiExec.exe</td><td>/x [ProductCode]</td><td/><td/><td>NewShortcut2_D1CC37B0448140518CB7CBA13495A25F.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
