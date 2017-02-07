@@ -43,7 +43,7 @@ Set-Variable WinApiGenerateToAllProcessesThatShareTheConsole -Option Constant -V
 Set-Variable LogsPath -Option Constant -Value (Join-Path $PSScriptRoot "Logs")
 
 Set-Variable ElasticSearchExecutableName -Option Constant -Value "elasticsearch.bat"
-Set-Variable ElasticSearchExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "elasticsearch-5.0.0\bin" | Join-Path -ChildPath $ElasticSearchExecutableName)
+Set-Variable ElasticSearchExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "elasticsearch-5.2.0\bin" | Join-Path -ChildPath $ElasticSearchExecutableName)
 Set-Variable ElasticSearchLogPath -Option Constant -Value (Join-Path $LogsPath "ElasticSearchOut.txt")
 Set-Variable ElasticSearchStartedFilter -Option Constant -Value "*started"
 
@@ -54,12 +54,12 @@ Set-Variable LogStashConfigFileRelativePath -Option Constant -Value ".\config\lo
 Set-Variable LogStashLogPath -Option Constant -Value (Join-Path $LogsPath "LogStashOut.txt")
 Set-Variable LogStashStartedFilter -Option Constant -Value "*Successfully started*"
 
-Set-Variable FileBeatRootPath -Option Constant -Value (Join-Path $PSScriptRoot "filebeat-5.0.0-windows-x86_64")
+Set-Variable FileBeatRootPath -Option Constant -Value (Join-Path $PSScriptRoot "filebeat-5.2.0-windows-x86_64")
 Set-Variable FileBeatExecutableName -Option Constant -Value "filebeat.exe"
 Set-Variable FileBeatLogPath -Option Constant -Value (Join-Path $LogsPath "FileBeatOut.txt")
 
 Set-Variable KibanaExecutableName -Option Constant -Value "kibana.bat"
-Set-Variable KibanaExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "kibana-5.0.0-windows-x86\bin" | Join-Path -ChildPath $KibanaExecutableName)
+Set-Variable KibanaExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "kibana-5.2.0-windows-x86\bin" | Join-Path -ChildPath $KibanaExecutableName)
 Set-Variable KibanaLogPath -Option Constant -Value (Join-Path $LogsPath "KibanaOut.txt")
 Set-Variable KibanaStartedFilter -Option Constant -Value "*Server running at*"
 

@@ -35,9 +35,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="elasticsearch-5.0.0\**\*.*" />
-    <Content Include="filebeat-5.0.0-windows-x86_64\**\*.*" />
-    <Content Include="kibana-5.0.0-windows-x86\**\*.*" />
+    <Content Include="elasticsearch-5.2.0\**\*.*" />
+    <Content Include="filebeat-5.2.0-windows-x86_64\**\*.*" />
+    <Content Include="kibana-5.2.0-windows-x86\**\*.*" />
     <Content Include="logstash-5.0.0\**\*.*" />
   </ItemGroup>
   <ItemGroup>
