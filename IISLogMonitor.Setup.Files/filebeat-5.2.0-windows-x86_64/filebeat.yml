@@ -19,8 +19,7 @@ filebeat.prospectors:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /var/log/*.log
-    #- c:\programdata\elasticsearch\logs\*
+    - C:\inetpub\logs\LogFiles\W3SVC1\*
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
