@@ -64,8 +64,8 @@ Set-Variable KibanaLogPath -Option Constant -Value (Join-Path $LogsPath "KibanaO
 Set-Variable KibanaStartedFilter -Option Constant -Value "*Server running at*"
 
 Set-Variable WaitForProcessStartEventId -Option Constant -Value "WaitForProcessStart"
-Set-Variable StartProcessTimeoutInSeconds -Option Constant -Value 30
-Set-Variable StopProcessTimeoutInSeconds -Option Constant -Value 5
+Set-Variable StartProcessTimeoutInSeconds -Option Constant -Value 60
+Set-Variable StopProcessTimeoutInSeconds -Option Constant -Value 10
 
 function OnStart()
 {
@@ -143,32 +143,43 @@ function OnStop()
 
         $process = Get-Process -Id $cimProcess.ProcessId
 
-        # To attach to another console, this process must detach itself from its console
-        if (-not $Kernel32::FreeConsole())
-        {
-            Throw-WinApiError("FreeConsole")
-        }
-
         if (-not $Kernel32::AttachConsole($process.Id))
         {
             Throw-WinApiError("AttachConsole")
         }
 
-        # Once attached to the target process console, avoid listening for Ctrl+C signals to this process, or else it would be killed.
-        if (-not $Kernel32::SetConsoleCtrlHandler($WinApiNoHandlerRoutine, $WinApiIgnoreCtrlC))
+        try
         {
-            Throw-WinApiError("SetConsoleCtrlHandler")
-        }
+            # Once attached to the target process console, avoid listening for Ctrl+C signals to this process, or else it would be killed.
+            if (-not $Kernel32::SetConsoleCtrlHandler($WinApiNoHandlerRoutine, $WinApiIgnoreCtrlC))
+            {
+                Throw-WinApiError("SetConsoleCtrlHandler")
+            }
 
-        if (-not $Kernel32::GenerateConsoleCtrlEvent($Kernel32::CTRL_C_EVENT, $WinApiGenerateToAllProcessesThatShareTheConsole))
+            if (-not $Kernel32::GenerateConsoleCtrlEvent($Kernel32::CTRL_C_EVENT, $WinApiGenerateToAllProcessesThatShareTheConsole))
+            {
+                Throw-WinApiError("GenerateConsoleCtrlEvent")
+            }
+        }
+        finally
         {
-            Throw-WinApiError("GenerateConsoleCtrlEvent")
+            # Detach this process from the target process console, to prevent this process from being killed when the console is closed.
+            if (-not $Kernel32::FreeConsole())
+            {
+                Throw-WinApiError("FreeConsole")
+            }
         }
-
+        
         if (-not $process.WaitForExit($StopProcessTimeoutInSeconds * 1000))
         {
             throw "Could not stop the process { Id = $($process.Id), CommandLine = '$($cimProcess.CommandLine)' }"
         }
+    }
+
+    # To attach to another console, this process must detach itself from its console
+    if (-not $Kernel32::FreeConsole())
+    {
+        Throw-WinApiError("FreeConsole")
     }
 
     Stop-ProcessByCtrlC($FileBeatExecutableName)
