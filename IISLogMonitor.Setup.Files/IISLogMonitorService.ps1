@@ -52,11 +52,12 @@ Set-Variable LogStashExecutableName -Option Constant -Value "logstash.bat"
 Set-Variable LogStashExecutableRelativePath -Option Constant -Value ".\bin\$LogStashExecutableName"
 Set-Variable LogStashConfigFileRelativePath -Option Constant -Value ".\config\logstash.conf"
 Set-Variable LogStashLogPath -Option Constant -Value (Join-Path $LogsPath "LogStashOut.txt")
-Set-Variable LogStashStartedFilter -Option Constant -Value "*Successfully started*"
+Set-Variable LogStashStartedFilter -Option Constant -Value "*Successfully started Logstash*"
 
 Set-Variable FileBeatRootPath -Option Constant -Value (Join-Path $PSScriptRoot "filebeat-5.2.0-windows-x86_64")
 Set-Variable FileBeatExecutableName -Option Constant -Value "filebeat.exe"
-Set-Variable FileBeatLogPath -Option Constant -Value (Join-Path $LogsPath "FileBeatOut.txt")
+Set-Variable FileBeatLogPath -Option Constant -Value (Join-Path $LogsPath "filebeat")
+Set-Variable FileBeatStartedFilter -Option Constant -Value "*filebeat start running*"
 
 Set-Variable KibanaExecutableName -Option Constant -Value "kibana.bat"
 Set-Variable KibanaExecutablePath -Option Constant -Value ($PSScriptRoot | Join-Path -ChildPath "kibana-5.2.0-windows-x86\bin" | Join-Path -ChildPath $KibanaExecutableName)
@@ -121,7 +122,8 @@ function OnStart()
     Wait-ProcessStart $KibanaExecutableName $KibanaLogPath $KibanaStartedFilter
 
     Set-Location $FileBeatRootPath
-    Start-Process $FileBeatExecutableName "> `"$FileBeatLogPath`""
+    Start-Process $FileBeatExecutableName "-path.logs `"$LogsPath`""
+    Wait-ProcessStart $FileBeatExecutableName $FileBeatLogPath $FileBeatStartedFilter
 }
 
 function OnStop()
@@ -175,6 +177,8 @@ function OnStop()
             throw "Could not stop the process { Id = $($process.Id), CommandLine = '$($cimProcess.CommandLine)' }"
         }
     }
+
+    # Taskkill could be used to kill the processes gracefully, but it does not work with the 'NT AUTHORITY\SYSTEM' user.
 
     # To attach to another console, this process must detach itself from its console
     if (-not $Kernel32::FreeConsole())
